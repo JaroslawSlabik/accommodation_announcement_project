@@ -1,0 +1,122 @@
+{{ block("head", "base.html.twig") }}
+
+    <div id="main" class="col1">
+
+        <div class="content-posts-wrap">
+            <div id="content-box">
+                <div id="post-body">
+                    <div class="post-single post-4179 page type-page status-publish hentry">
+                        <h1 id="post-title" class="entry-title post-4179 page type-page status-publish hentry">Szczegóły konta </h1>
+                        <div class="breadcrumbs">
+                            <div class="breadcrumbs-wrap">
+                                <ul><li><a href="/">Home</a></li><li class="separator"> / </li><li> Moje konto</li></ul>					</div><!--breadcrumbs-wrap-->
+                        </div><!--breadcrumbs-->
+                        <div id="article">
+                            <div class="accannouncements">
+                                <nav class="accannouncements-MyAccount-navigation">
+                                    <ul>
+                                        {% if admin %}
+                                            <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--orders">
+                                                <a href="{{app.request.getBaseURL()}}/active_offers">Oferty</a>
+                                            </li>
+
+                                            <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--orders">
+                                                <a href="{{app.request.getBaseURL()}}/offers_to_confirm">Oferty do zatwierdzenia</a>
+                                            </li>
+
+                                            <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--orders">
+                                                <a href="{{app.request.getBaseURL()}}/users_to_confirm">Klienci do  zatwierdzenia</a>
+                                            </li>
+
+                                            <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--orders">
+                                                <a href="{{app.request.getBaseURL()}}/users">Klienci</a>
+                                            </li>
+
+                                            <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--edit-account is-active">
+                                                <a href="{{app.request.getBaseURL()}}/payments">Płatności</a>
+                                            </li>
+
+                                            <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--edit-account is-active">
+                                                <a href="{{app.request.getBaseURL()}}/reservations">Rezerwacje</a>
+                                            </li>
+                                        {% else %}
+                                            <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--orders">
+                                                <a href="{{app.request.getBaseURL()}}/my_offers">Moje oferty</a>
+                                            </li>
+
+                                            <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--orders">
+                                                <a href="{{app.request.getBaseURL()}}/my_orders">Moje rezerwacje</a>
+                                            </li>
+
+                                            <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--edit-account is-active">
+                                                <a href="{{app.request.getBaseURL()}}/account">Szczegóły konta</a>
+                                            </li>
+                                        {% endif %}
+
+                                        <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--customer-logout">
+                                            <a href="{{app.request.getBaseURL()}}/logout">Wyloguj</a>
+                                        </li>
+
+                                    </ul>
+                                </nav>
+
+
+                                <div class="accannouncements-MyAccount-content">
+                                    <form class="accannouncements-EditAccountForm edit-account" action="" method="post">
+                                        <p class="accannouncements-form-row accannouncements-form-row--first form-row form-row-first">
+                                            <label for="account_first_name">Imię&nbsp;<span class="required">*</span></label>
+                                            <input type="text" class="accannouncements-Input accannouncements-Input--text input-text" name="account_first_name" id="account_first_name" autocomplete="given-name" value="{{name}}">
+                                        </p>
+
+                                        <p class="accannouncements-form-row accannouncements-form-row--last form-row form-row-last">
+                                            <label for="account_last_name">Nazwisko&nbsp;<span class="required">*</span></label>
+                                            <input type="text" class="accannouncements-Input accannouncements-Input--text input-text" name="account_last_name" id="account_last_name" autocomplete="family-name" value="{{surname}}">
+                                        </p>
+
+                                        <div class="clear"></div>
+
+                                        <div class="clear"></div>
+
+                                        <p class="accannouncements-form-row accannouncements-form-row--wide form-row form-row-wide">
+                                            <label for="account_email">Adres E-mail&nbsp;<span class="required">*</span></label>
+                                            <input type="email" class="accannouncements-Input accannouncements-Input--email input-text" name="account_email" id="account_email" autocomplete="email" value="{{email}}">
+                                        </p>
+
+                                        <fieldset>
+                                            <legend>Zmiana hasła</legend>
+
+                                            <p class="accannouncements-form-row accannouncements-form-row--wide form-row form-row-wide">
+                                                <label for="password_current">Aktualne hasło</label>
+                                                <input type="password" class="accannouncements-Input accannouncements-Input--password input-text" name="password_current" id="password_current" autocomplete="off">
+                                            </p>
+                                            <p class="accannouncements-form-row accannouncements-form-row--wide form-row form-row-wide">
+                                                <label for="password_1">Nowe hasło</label>
+                                                <input type="password" class="accannouncements-Input accannouncements-Input--password input-text" name="password_1" id="password_1" autocomplete="off">
+                                            </p>
+                                            <p class="accannouncements-form-row accannouncements-form-row--wide form-row form-row-wide">
+                                                <label for="password_2">Potwierdź nowe hasło</label>
+                                                <input type="password" class="accannouncements-Input accannouncements-Input--password input-text" name="password_2" id="password_2" autocomplete="off">
+                                            </p>
+                                        </fieldset>
+                                        <div class="clear"></div>
+
+
+                                        <p>
+                                            <input type="hidden" id="save-account-details-nonce" name="save-account-details-nonce" value="905a6c5d74"><input type="hidden" name="" value="">		<button type="submit" class="accannouncements-Button button" name="save_account_details" value="Zapisz zmiany">Zapisz zmiany</button>
+                                            <input type="hidden" name="action" value="save_account_details">
+                                        </p>
+
+                                    </form>
+
+                                    <div class="accannouncements-notices-wrapper"></div></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{{ block("footer", "base.html.twig") }}

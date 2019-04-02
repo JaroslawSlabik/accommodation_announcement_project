@@ -1,0 +1,95 @@
+index:
+    path: /
+    controller: App\Controller\MainController::home
+
+login:
+    path: /login
+    controller: App\Controller\MainController::login
+
+register:
+    path: /register
+    controller: App\Controller\MainController::register
+
+account:
+    path: /account
+    controller: App\Controller\MainController::profile
+
+my_orders:
+    path: /my_orders
+    controller: App\Controller\MainController::myOrders
+
+offerslist:
+    path: /offerslist
+    controller: App\Controller\MainController::offersList
+
+offer:
+    path: /offer-{id_offer}
+    controller: App\Controller\MainController::offer
+
+logout:
+    path: /logout
+    controller: App\Controller\MainController::logout
+
+my_offers:
+    path: /my_offers
+    controller: App\Controller\MainController::myOffers
+
+create_new_offer:
+    path: /create_new_offer
+    controller: App\Controller\MainController::createNewOffer
+
+pojedyncza_oferta:
+    path: /pojedyncza-oferta
+    controller: App\Controller\MainController::pojedynczaOferta
+    
+offers_to_confirm:
+    path: /offers_to_confirm
+    controller: App\Controller\MainController::offersToConfirm
+    
+active_offers:
+    path: /active_offers
+    controller: App\Controller\MainController::activeOffers
+    
+users_to_confirm:
+    path: /users_to_confirm
+    controller: App\Controller\MainController::usersToConfirm
+
+users:
+    path: /users
+    controller: App\Controller\MainController::users
+    
+payments:
+    path: /payments
+    controller: App\Controller\MainController::payments
+
+reservations:
+    path: /reservations
+    controller: App\Controller\MainController::reservations
+
+confirm_client:
+    path: /confirm_client-{id_client}
+    controller: App\Controller\MainController::confirmClient
+
+confirm_offer:
+    path: /confirm_offer-{id_offer}
+    controller: App\Controller\MainController::confirmOffer
+
+delete_offer:
+    path: /delete_offer-{id_offer}
+    controller: App\Controller\MainController::deleteOffer
+
+make_booking:
+    path: /make_booking
+    controller: App\Controller\MainController::makeBooking
+
+delete_booking:
+    path: /delete_booking-{id_book}
+    controller: App\Controller\MainController::deleteBooking
+
+confirm_booking:
+    path: /confirm_booking-{id_book}
+    controller: App\Controller\MainController::confirmBooking
+
+kontakt:
+    path: /kontakt
+    controller: App\Controller\MainController::kontakt

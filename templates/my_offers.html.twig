@@ -1,0 +1,281 @@
+{{ block("head", "base.html.twig") }}
+
+	<div id="main" class="col1">
+
+        <div class="content-posts-wrap">
+            <div id="content-box">
+                <div id="post-body">
+                    <div class="post-single post-4179 page type-page status-publish hentry">
+                        <h1 id="post-title" class="entry-title post-4179 page type-page status-publish hentry">moje oferty </h1>
+                        <div class="breadcrumbs">
+                            <div class="breadcrumbs-wrap">
+                                <ul><li><a href="/">Home</a></li><li class="separator"> / </li><li> Moje konto</li></ul>					</div>
+                        </div>
+                        <div id="article">
+                            <div class="accannouncements">
+                                <nav class="accannouncements-MyAccount-navigation">
+                                    <ul>
+
+                                        <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--orders">
+                                            <a href="{{app.request.getBaseURL()}}/my_offers">Moje oferty</a>
+                                        </li>
+
+                                        <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--orders">
+                                            <a href="{{app.request.getBaseURL()}}/my_orders">Moje rezerwacje</a>
+                                        </li>
+
+                                        <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--edit-account is-active">
+                                            <a href="{{app.request.getBaseURL()}}/account">Szczegóły konta</a>
+                                        </li>
+                                        <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--customer-logout">
+                                            <a href="{{app.request.getBaseURL()}}/logout">Wyloguj</a>
+                                        </li>
+
+                                    </ul>
+                                </nav>
+
+
+                                <div class="accannouncements-MyAccount-content">
+                                    {% if show_message %}
+                                        {% if was_ok %}
+                                            <H1 style="color: #00FF00;">{{error_message}}</H1>
+                                        {% else %}
+                                            <H1 style="color: #FF0000;">Error: {{error_message}} Kod: {{error_code}}</H1>
+                                        {% endif %}
+                                    {% endif %}
+                                <h3>Wyślij nową ofertę</h3>
+
+
+                                <button class="acc-togglebtn">Dodaj nową ofertę <i class="fa fa-arrow-circle-right"></i></button>
+
+                                 <div id="form-nowa-oferta" class="acc-form-wrap">
+                                     <FORM class="u-column1 col-1" method="post" action="{{app.request.getBaseURL()}}/create_new_offer">
+                                        <p><label>Tytuł<br \>
+                                                <span class="">
+                                                    <input type="text" name="tytul" value="" size="40" class="acc-form-input">
+                                                </span>
+                                            </label>
+                                        </p>
+                                        <p><label>Opis<br \>
+                                                <span class="">
+                                                    <textarea name="opis" cols="40" rows="10" class="acc-form-textarea"></textarea>
+                                                </span>
+                                            </label>
+                                        </p>
+                                        <p><label>Cena<br \>
+                                                <span class="">
+                                                    <input type="number" name="cena" value="" size="40" class="acc-form-input" min="0">
+                                                </span>
+                                            </label>
+                                        </p>
+                                        <p>
+                                            <label>Promocja<br \>
+                                                <span class="">
+                                                    <select name="promotion" class="acc-form-select">
+                                                        {% for promotion in promotion_list.getList()%}
+                                                        <option value="{{promotion.getIdPromotion()}}">{{promotion.getName()}} - {{promotion.getPriceReduction()*100}}% ceny</option>
+                                                        {%endfor %}
+                                                    </select>
+                                                </span>
+                                            </label>
+                                        </p>
+
+                                        <p><label>Data od<br \>
+                                                <span class="">
+                                                    <input type="date" name="data-od" value="" class="acc-form-input">
+                                                </span>
+                                            </label>
+                                        </p>
+                                        <p><label>Data do<br \>
+                                                <span class="">
+                                                    <input type="date" name="data-do" value="" class="acc-form-input">
+                                                </span>
+                                            </label>
+                                        </p>
+                                        <p><input type="submit" value="Wyślij" class="acc-form-submit"></p>
+                                     </FORM>
+                                </div>
+
+                                    <h3>Lista Twoich ofert</h3>
+                                    <table class="accannouncements-orders-table accannouncements-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
+                                        <thead>
+                                        <tr>
+                                            <th class="accannouncements-orders-table__header"><span class="nobr">Oferta</span></th>
+                                            <th class="accannouncements-orders-table__header"><span class="nobr">Tytuł</span></th>
+                                            <th class="accannouncements-orders-table__header"><span class="nobr">Foto</span></th>
+                                            <th class="accannouncements-orders-table__header"><span class="nobr">Okres</span></th>
+                                            <th class="accannouncements-orders-table__header"><span class="nobr">Zatwierdzona</span></th>
+                                            <th class="accannouncements-orders-table__header"><span class="nobr">Cena</span></th>
+                                            <th class="accannouncements-orders-table__header"><span class="nobr">Promocja</span></th>
+                                            <th class="accannouncements-orders-table__header"><span class="nobr">Akcje</span></th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        {% for offer_per_user in offer_list_per_user.getList()%}
+                                        <tr class="accannouncements-orders-table__row accannouncements-orders-table__row--status-on-hold order">
+                                            <td class="accannouncements-orders-table__cell">
+                                                <a href="#">{{offer_per_user.getIdOffer()}}</a>
+                                            </td>
+                                            <td class="accannouncements-orders-table__cell">
+                                                {{offer_per_user.getTitle()}}
+                                            </td>
+                                            <td class="accannouncements-orders-table__cell">
+                                                NULL
+                                            </td>
+                                            <td class="accannouncements-orders-table__cell">
+                                                Od {{offer_per_user.getDateValidityFrom()}} Do {{offer_per_user.getDateValidityTo()}}
+                                            </td>
+                                            <td class="accannouncements-orders-table__cell">
+                                                {% if offer_per_user.getConfirmation()==0 %}
+                                                    Nie
+                                                {% else %}
+                                                    Tak
+                                                {% endif %}
+                                            </td>
+                                            <td class="accannouncements-orders-table__cell">
+                                                {{offer_per_user.getPromotionPricePerDay()}}zł za dobę.
+                                            </td>
+                                            <td class="accannouncements-orders-table__cell">
+                                                {{offer_per_user.getPromotionName()}}
+                                            </td>
+                                            <td class="accannouncements-orders-table__cell">
+                                                <!-- TODO
+                                                <a href="{{app.request.getBaseURL()}}/delete_offer-{{offer_per_user.getIdOffer()}}">
+                                                    <input type="button" value="Usuń" />
+                                                </a>
+                                                <a href="{{app.request.getBaseURL()}}/my_offers">
+                                                    <input type="button" value="Edytuj" />
+                                                </a>
+                                                -->
+                                            </td>
+                                        </tr>
+                                        {%endfor%}
+                                        </tbody>
+                                    </table>
+
+                                    <div class="accannouncements-notices-wrapper"></div></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+    <div class="social">
+        <div id="social-wrap">
+            <div id="social-bar">
+                <a href="#" target="_blank" title="Facebook"><i class="fa fa-facebook-square"></i></a>
+
+                <a href="#" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a>
+
+                <a href="#" target="_blank" title="Google+"><i class="fa fa-google-plus"></i></a>
+
+                <a href="#" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a>
+                <a href="#" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a>
+                <a href="#" target="_blank" title="Vimeo"><i class="fa fa-vimeo-square"></i></a>
+
+                <a href="#" target="_blank" title="YouTube"><i class="fa fa-youtube"></i></a>
+
+            </div>
+        </div>
+    </div>	<div class="clear"></div>
+
+    <div id="footer" style="background:#d80032">
+        <div id="footer-wrap">
+            <div id="footer-box" class="footer-v4">
+                <div class="sidebar-footer">
+                    <div>
+                        <div id="nav_menu-2" class="footer-widget-col widget_nav_menu"><h4>Accommodation Announcements</h4><div class="menu-f1-container"><ul id="menu-f1" class="menu"><li id="menu-item-3573" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3573"><a href="/">Oferty</a></li>
+                                </ul></div></div>		</div>
+                </div>
+                <div class="sidebar-footer">
+                    <div>
+                        <div id="nav_menu-3" class="footer-widget-col widget_nav_menu"><h4>O nas</h4><div class="menu-f2-container"><ul id="menu-f2" class="menu"><li id="menu-item-3691" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3691"><a href="/">O firmie</a></li>
+                                    <li id="menu-item-3698" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3698"><a href="/">Kontakt</a></li>
+                                </ul></div></div>		</div>
+                </div>
+                <div class="sidebar-footer">
+                    <div>
+                        <div id="nav_menu-4" class="footer-widget-col widget_nav_menu"><h4>DLA klienta</h4><div class="menu-f3-container"><ul id="menu-f3" class="menu"><li id="menu-item-3692" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3692"><a href="/">Masz apartament do wynajęcia?</a></li>
+                                </ul></div></div>		</div>
+                </div>
+                <div class="sidebar-footer lastone">
+                    <div>
+                        <div id="nav_menu-5" class="footer-widget-col widget_nav_menu"><h4>Wynajmij</h4><div class="menu-f4-container"><ul id="menu-f4" class="menu"><li id="menu-item-4147" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4147"><a href="#">Apartament</a></li>
+                                </ul></div></div>		</div>
+                </div>
+            </div>		</div>
+    </div>
+    <div id="copyright">
+        <div class="copyright-wrap">
+            <span class="left"><i class="fa fa-copyright"></i><a href="/">Copyright 2018 Accommodation Announcements</a></span>
+            <span class="right">Accomodation announcements</span>
+        </div>
+    </div></div>
+
+
+
+<script type='text/javascript' src='js/scripts.js?ver=5.0.5'></script>
+<script type='text/javascript' src='js/jquery.blockUI.min.js?ver=2.70'></script>
+
+
+
+<script type='text/javascript' src='js/selectWoo.full.min.js?ver=1.0.4'></script>
+<script type='text/javascript' src='js/js.cookie.min.js?ver=2.1.4'></script>
+<script type='text/javascript' src='js/accannouncements.min.js?ver=3.5.1'></script>
+
+
+<script type='text/javascript'>
+    jQuery( 'body' ).bind( 'wc_fragments_refreshed', function() {
+        jQuery( 'body' ).trigger( 'jetpack-lazy-images-load' );
+    } );
+
+</script>
+
+
+<script type='text/javascript' src='js/custom.js?ver=4.9.8'></script>
+<script type='text/javascript' src='js/unslider.js?ver=4.9.8'></script>
+<script type='text/javascript' src='js/jquery.flexslider.js?ver=4.9.8'></script>
+<script type='text/javascript' src='js/ideal-image-slider.js?ver=20160115'></script>
+<script type='text/javascript' src='js/scrollup.js?ver=4.9.8'></script>
+
+<script type='text/javascript'>
+    /* <![CDATA[ */
+    var php_vars = {"slideshowSpeed":"5000","animationSpeed":"800"};
+    /* ]]> */
+</script>
+
+<script type='text/javascript' src='js/slides.js?ver=4.9.8'></script>
+<script type='text/javascript'>
+    /* <![CDATA[ */
+    var php_vars = {"slideshowSpeed":"5000","animationSpeed":"800","sliderHeight":"500","sliderEffect":"fade"};
+    /* ]]> */
+</script>
+<script type='text/javascript' src='js/ideal-slides.js?ver=4.9.8'></script>
+
+<script>
+    jQuery(document).ready(function(){
+        jQuery(".acc-togglebtn").click(function(){
+            jQuery("#form-nowa-oferta").toggle(300,"swing",function(){
+            });
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+    var c = document.body.className;
+    c = c.replace(/accannouncements-no-js/, 'accannouncements-js');
+    document.body.className = c;
+</script>
+
+
+</body>
+</html>

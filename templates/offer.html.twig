@@ -1,0 +1,76 @@
+{{ block("head", "base.html.twig") }}
+
+
+    <div id="main" class="col2-l" style="margin-top: 78px;">
+        <div class="content-posts-wrap">
+            <div id="content-box" style="width:100%">
+                <div id="post-body">
+                    {% if show_message %}
+                        {% if was_ok %}
+                            <H1 style="color: #00FF00;">{{error_message}}</H1>
+                        {% else %}
+                            <H1 style="color: #FF0000;">Error: {{error_message}} Kod: {{error_code}}</H1>
+                        {% endif %}
+                    {% endif %}
+                    <div class="post-single post type-post status-publish format-standard has-post-thumbnail ">
+                        <h1 id="post-title" class="entry-title post type-post status-publish format-standard has-post-thumbnail ">{{offer.getTitle()}}</h1>
+                        <div class="breadcrumbs">
+                            <div class="breadcrumbs-wrap">
+                                <ul><li><a href="">Home</a></li><li class="separator"> / </li><li><a href="/oferty/" rel="category tag">oferty</a></li><li class="separator"> / </li><li>{{ offer.getTitle() }}</li></ul>					</div>
+                        </div>
+                        <div class="post-info">
+                            <span><i class="fa fa-calendar"></i>Oferta dostępna od {{offer.getDateValidityFrom()}} do {{offer.getDateValidityTo()}}.</span>
+                        </div>
+                        <div class="post-info">
+                            <span><i class="fa fa-dollar"></i>
+                                {% if offer.getPricePerDay() == offer.getPromotionPricePerDay() %}
+                                    {{offer.getPricePerDay()}} PLN / dobę
+                                {% else %}
+                                    <span style="text-decoration: line-through; color:red;">{{offer.getPricePerDay()}}</span> {{offer.getPromotionPricePerDay()}} PLN / dobę {{offer.getPromotionName()}}
+                                {% endif %}
+                            </span>
+                        </div>
+
+                        <div class="thumb-wrapper">
+                            <img width="1024" height="683" src="{{ asset('assets/fot3.jpg') }}" class="attachment-full size-full wp-post-image" alt="">							</div>
+                        <div id="article">
+                            <p>{{offer.getDescription()}}</p>
+
+                        </div>
+
+                        <h3>Zarezerwuj apartament</h3>
+                        <FORM method="post" action="{{app.request.getBaseURL()}}/make_booking">
+                        <div class="acc-form-wrap">
+                            <div class="col-sm-6 col-md-6">
+                                <p><label>Data od<br \>
+                                        <span class="">
+                                                        <input type="date" name="data-od" value="" class="acc-form-input">
+                                                    </span>
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <p><label>Data do<br \>
+                                        <span class="">
+                                                        <input type="date" name="data-do" value="" class="acc-form-input">
+                                                    </span>
+                                    </label>
+                                </p>
+                            </div>
+                            <input type="hidden" name="id_offer" value="{{offer.getIdOffer()}}" >
+                            <div class="col-sm-6 col-md-6">
+                                <p><input type="submit" value="Zarezerwuj" class="acc-form-submit"></p>
+                            </div>
+                        </div>
+                        </FORM>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+{{ block("footer", "base.html.twig") }}

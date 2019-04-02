@@ -1,0 +1,135 @@
+{{ block("head", "base.html.twig") }}
+
+<div id="main" class="col1">
+
+        <div class="content-posts-wrap">
+            <div id="content-box">
+                <div id="post-body">
+                    <div class="post-single post-4179 page type-page status-publish hentry">
+                        <h1 id="post-title" class="entry-title post-4179 page type-page status-publish hentry">Lista użytkowników do zatwierdzenia</h1>
+                        <div class="breadcrumbs">
+                            <div class="breadcrumbs-wrap">
+                                <ul><li><a href="/">Home</a></li><li class="separator"> / </li><li>Lista użytkowników do zatwierdzenia</li></ul>					</div>
+                        </div>
+                        <div id="article">
+                            <div class="accannouncements">
+                                <nav class="accannouncements-MyAccount-navigation">
+                                    <ul>
+                                        <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--orders">
+                                            <a href="{{app.request.getBaseURL()}}/active_offers">Oferty</a>
+                                        </li>
+
+                                        <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--orders">
+                                            <a href="{{app.request.getBaseURL()}}/offers_to_confirm">Oferty do zatwierdzenia</a>
+                                        </li>
+
+                                        <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--orders">
+                                            <a href="{{app.request.getBaseURL()}}/users_to_confirm">Klienci do  zatwierdzenia</a>
+                                        </li>
+
+                                        <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--orders">
+                                            <a href="{{app.request.getBaseURL()}}/users">Klienci</a>
+                                        </li>
+
+                                        <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--edit-account is-active">
+                                            <a href="{{app.request.getBaseURL()}}/payments">Płatności</a>
+                                        </li>
+
+                                        <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--edit-account is-active">
+                                            <a href="{{app.request.getBaseURL()}}/reservations">Rezerwacje</a>
+                                        </li>
+
+                                        <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--customer-logout">
+                                            <a href="{{app.request.getBaseURL()}}/logout">Wyloguj</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+
+                                <div class="accannouncements-MyAccount-content">
+                                    {% if show_message %}
+                                        {% if was_ok %}
+                                            <H1 style="color: #00FF00;">{{error_message}}</H1>
+                                        {% else %}
+                                            <H1 style="color: #FF0000;">Error: {{error_message}} Kod: {{error_code}}</H1>
+                                        {% endif %}
+                                    {% endif %}
+
+                                    <table class="accannouncements-orders-table accannouncements-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
+                                        <thead>
+                                        <tr>
+                                            <th class="accannouncements-orders-table__header"><span class="nobr">Użytkownik</span></th>
+                                            <th class="accannouncements-orders-table__header"><span class="nobr">Imię</span></th>
+                                            <th class="accannouncements-orders-table__header"><span class="nobr">Nazwisko</span></th>
+                                            <th class="accannouncements-orders-table__header"><span class="nobr">Mail</span></th>
+											<th class="accannouncements-orders-table__header"><span class="nobr">Hasło</span></th>
+											<th class="accannouncements-orders-table__header"><span class="nobr">Marketing</span></th>
+											<th class="accannouncements-orders-table__header"><span class="nobr">RODO</span></th>
+											<th class="accannouncements-orders-table__header"><span class="nobr">Regulamin</span></th>
+											<th class="accannouncements-orders-table__header"><span class="nobr">IP v4</span></th>
+											<th class="accannouncements-orders-table__header"><span class="nobr">Data utworzenia</span></th>
+											<th class="accannouncements-orders-table__header"><span class="nobr">Akcje</span></th>
+
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        {% for client_to_confirm in client_list_to_confirm.getList()%}
+                                        <tr class="accannouncements-orders-table__row accannouncements-orders-table__row--status-on-hold order">
+                                            <td class="accannouncements-orders-table__cell">
+                                                <a href="#">#05</a>
+                                            </td>
+                                            <td class="accannouncements-orders-table__cell">
+                                                {{client_to_confirm.getName()}}
+                                            </td>
+                                            <td class="accannouncements-orders-table__cell">
+                                                {{client_to_confirm.getSurname()}}
+                                            </td>
+                                            <td class="accannouncements-orders-table__cell">
+                                                {{client_to_confirm.getMail()}}
+                                            </td>
+											<td class="accannouncements-orders-table__cell">
+                                                {{client_to_confirm.getPassword()}}
+                                            </td>
+											<td class="accannouncements-orders-table__cell">
+                                                {{client_to_confirm.getMarketing()}}
+                                            </td>
+											<td class="accannouncements-orders-table__cell">
+                                                {{client_to_confirm.getRODO()}}
+                                            </td>
+											<td class="accannouncements-orders-table__cell">
+                                                {{client_to_confirm.getRegulations()}}
+                                            </td>
+											<td class="accannouncements-orders-table__cell">
+                                                {{client_to_confirm.getIPv4()}}
+                                            </td>
+											<td class="accannouncements-orders-table__cell">
+                                                {{client_to_confirm.getCreationDate()}}
+                                            </td>
+											<td class="accannouncements-orders-table__cell">
+                                                <a href="{{app.request.getBaseURL()}}/confirm_client-{{client_to_confirm.getIdClient()}}">
+													<input type="button" value="Zatwierdź" />
+												</a>
+                                            </td>
+                                        </tr>
+                                        {%endfor %}
+                                        </tbody>
+                                    </table>
+
+
+
+
+                                    <div class="accannouncements-notices-wrapper"></div></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+{{ block("footer", "base.html.twig") }}

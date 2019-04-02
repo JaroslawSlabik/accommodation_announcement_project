@@ -1,0 +1,122 @@
+{{ block("head", "base.html.twig") }}
+
+
+<div id="main" class="col1">
+
+        <div class="content-posts-wrap">
+            <div id="content-box">
+                <div id="post-body">
+                    <div class="post-single post-4179 page type-page status-publish hentry">
+                        <h1 id="post-title" class="entry-title post-4179 page type-page status-publish hentry">Lista aktywnych ofert</h1>
+                        <div class="breadcrumbs">
+                            <div class="breadcrumbs-wrap">
+                                <ul><li><a href="/">Home</a></li><li class="separator"> / </li><li>Lista aktywnych ofert</li></ul>					</div>
+                        </div>
+                        <div id="article">
+                            <div class="accannouncements">
+                                <nav class="accannouncements-MyAccount-navigation">
+                                    <ul>
+                                        <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--orders">
+                                            <a href="{{app.request.getBaseURL()}}/active_offers">Oferty</a>
+                                        </li>
+
+                                        <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--orders">
+                                            <a href="{{app.request.getBaseURL()}}/offers_to_confirm">Oferty do zatwierdzenia</a>
+                                        </li>
+
+                                        <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--orders">
+                                            <a href="{{app.request.getBaseURL()}}/users_to_confirm">Klienci do  zatwierdzenia</a>
+                                        </li>
+
+                                        <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--orders">
+                                            <a href="{{app.request.getBaseURL()}}/users">Klienci</a>
+                                        </li>
+
+                                        <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--edit-account is-active">
+                                            <a href="{{app.request.getBaseURL()}}/payments">Płatności</a>
+                                        </li>
+
+                                        <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--edit-account is-active">
+                                            <a href="{{app.request.getBaseURL()}}/reservations">Rezerwacje</a>
+                                        </li>
+
+                                        <li class="accannouncements-MyAccount-navigation-link accannouncements-MyAccount-navigation-link--customer-logout">
+                                            <a href="{{app.request.getBaseURL()}}/logout">Wyloguj</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+
+                                <div class="accannouncements-MyAccount-content">
+
+
+                                    <table class="accannouncements-orders-table accannouncements-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
+                                        <thead>
+                                        <tr>
+                                            <th class="accannouncements-orders-table__header"><span class="nobr">Oferta</span></th>
+                                            <th class="accannouncements-orders-table__header"><span class="nobr">Nazwa promocji</span></th>
+                                            <th class="accannouncements-orders-table__header"><span class="nobr">Tytuł</span></th>
+											<th class="accannouncements-orders-table__header"><span class="nobr">Cena</span></th>
+                                            <th class="accannouncements-orders-table__header"><span class="nobr">Najlepsza</span></th>
+                                            <th class="accannouncements-orders-table__header"><span class="nobr">Data od</span></th>
+											<th class="accannouncements-orders-table__header"><span class="nobr">Data do</span></th>
+											<th class="accannouncements-orders-table__header"><span class="nobr">Akcje</span></th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        {%for offer in offers.getList()%}
+                                        <tr class="accannouncements-orders-table__row accannouncements-orders-table__row--status-on-hold order">
+                                            <td class="accannouncements-orders-table__cell">
+                                                <a href="#">#{{offer.getIdOffer()}}</a>
+                                            </td>
+                                            <td class="accannouncements-orders-table__cell">
+                                                {{offer.getPromotionName()}}
+                                            </td>
+                                            <td class="accannouncements-orders-table__cell">
+                                                {{offer.getTitle()}}
+                                            </td>
+                                            <td class="accannouncements-orders-table__cell">
+                                                <span class="accannouncements-Price-amount amount">{{offer.getPromotionPricePerDay()}}&nbsp;<span class="accannouncements-Price-currencySymbol">zł</span></span> za dobę
+                                            </td>
+                                            <td class="accannouncements-orders-table__cell">
+                                                {{offer.getBest()}}
+                                            </td>
+											<td class="accannouncements-orders-table__cell">
+                                                {{offer.getDateValidityFrom()}}
+                                            </td>
+											<td class="accannouncements-orders-table__cell">
+                                                {{offer.getDateValidityTo()}}
+                                            </td>
+											<td class="accannouncements-orders-table__cell">
+												<a href="http://www.google.com/">
+													<input type="button" value="Wyświetl" />
+												</a>
+												<a href="http://www.google.com/">
+													<input type="button" value="Usuń" />
+												</a>
+                                            </td>
+
+                                        </tr>
+                                        {%endfor%}
+                                        </tbody>
+                                    </table>
+
+
+
+
+                                    <div class="accannouncements-notices-wrapper"></div></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+{{ block("footer", "base.html.twig") }}
