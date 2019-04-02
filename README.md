@@ -1,0 +1,1 @@
+accommodation_announcement_project
